@@ -17,6 +17,9 @@
 		AAFC36571D6D1E65003AAA5D /* Start.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC36561D6D1E65003AAA5D /* Start.m */; };
 		AAFC365A1D6D1EB2003AAA5D /* AddExpensesView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC36591D6D1EB2003AAA5D /* AddExpensesView.m */; };
 		AAFC365D1D6D20A1003AAA5D /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC365C1D6D20A1003AAA5D /* DBManager.m */; };
+		AAFC36611D6D25F7003AAA5D /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC36601D6D25F7003AAA5D /* BackgroundLayer.m */; };
+		AAFC36631D6D2B9D003AAA5D /* gastoHormiga.sql in Resources */ = {isa = PBXBuildFile; fileRef = AAFC36621D6D2B9D003AAA5D /* gastoHormiga.sql */; };
+		AAFC36651D6D2CDF003AAA5D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AAFC36641D6D2CDF003AAA5D /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,10 @@
 		AAFC36591D6D1EB2003AAA5D /* AddExpensesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddExpensesView.m; sourceTree = "<group>"; };
 		AAFC365B1D6D20A1003AAA5D /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		AAFC365C1D6D20A1003AAA5D /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		AAFC365F1D6D25F7003AAA5D /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
+		AAFC36601D6D25F7003AAA5D /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
+		AAFC36621D6D2B9D003AAA5D /* gastoHormiga.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = gastoHormiga.sql; sourceTree = SOURCE_ROOT; };
+		AAFC36641D6D2CDF003AAA5D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAFC36651D6D2CDF003AAA5D /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +61,7 @@
 		AAFC362B1D6D1AC8003AAA5D = {
 			isa = PBXGroup;
 			children = (
+				AAFC36641D6D2CDF003AAA5D /* libsqlite3.tbd */,
 				AAFC36361D6D1AC9003AAA5D /* GastoHormiga */,
 				AAFC36351D6D1AC8003AAA5D /* Products */,
 			);
@@ -69,6 +78,7 @@
 		AAFC36361D6D1AC9003AAA5D /* GastoHormiga */ = {
 			isa = PBXGroup;
 			children = (
+				AAFC365E1D6D2572003AAA5D /* Utils */,
 				AAFC36541D6D1CA0003AAA5D /* Cells */,
 				AAFC36531D6D1C96003AAA5D /* Database */,
 				AAFC36521D6D1C8B003AAA5D /* Main */,
@@ -116,6 +126,7 @@
 		AAFC36531D6D1C96003AAA5D /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				AAFC36621D6D2B9D003AAA5D /* gastoHormiga.sql */,
 				AAFC365B1D6D20A1003AAA5D /* DBManager.h */,
 				AAFC365C1D6D20A1003AAA5D /* DBManager.m */,
 			);
@@ -127,6 +138,15 @@
 			children = (
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		AAFC365E1D6D2572003AAA5D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AAFC365F1D6D25F7003AAA5D /* BackgroundLayer.h */,
+				AAFC36601D6D25F7003AAA5D /* BackgroundLayer.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +209,7 @@
 				AAFC364A1D6D1AC9003AAA5D /* LaunchScreen.storyboard in Resources */,
 				AAFC36471D6D1AC9003AAA5D /* Assets.xcassets in Resources */,
 				AAFC36421D6D1AC9003AAA5D /* Main.storyboard in Resources */,
+				AAFC36631D6D2B9D003AAA5D /* gastoHormiga.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAFC365D1D6D20A1003AAA5D /* DBManager.m in Sources */,
+				AAFC36611D6D25F7003AAA5D /* BackgroundLayer.m in Sources */,
 				AAFC363F1D6D1AC9003AAA5D /* ExpensesView.m in Sources */,
 				AAFC365A1D6D1EB2003AAA5D /* AddExpensesView.m in Sources */,
 				AAFC363C1D6D1AC9003AAA5D /* AppDelegate.m in Sources */,

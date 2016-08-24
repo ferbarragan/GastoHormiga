@@ -10,4 +10,11 @@
 
 @interface Start : UIViewController
 
+/* UI Outlets */
+@property (weak, nonatomic) IBOutlet UIButton *btnViewExpense;
+
+/* Action buttons. */
+- (IBAction)btnAddExpensePressed:(id)sender;
+- (IBAction)btnViewExpensePressed:(id)sender;
+
 @end

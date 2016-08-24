@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define DATABASE_NAME @"gastoHormiga.sql"
+
 @interface DBManager : NSObject
 
 -(instancetype)initWithDatabaseFilename:(NSString *)dbFilename;
