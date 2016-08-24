@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		AAFC36391D6D1AC9003AAA5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC36381D6D1AC9003AAA5D /* main.m */; };
 		AAFC363C1D6D1AC9003AAA5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC363B1D6D1AC9003AAA5D /* AppDelegate.m */; };
-		AAFC363F1D6D1AC9003AAA5D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC363E1D6D1AC9003AAA5D /* ViewController.m */; };
+		AAFC363F1D6D1AC9003AAA5D /* ExpensesView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC363E1D6D1AC9003AAA5D /* ExpensesView.m */; };
 		AAFC36421D6D1AC9003AAA5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAFC36401D6D1AC9003AAA5D /* Main.storyboard */; };
 		AAFC36451D6D1AC9003AAA5D /* GastoHormiga.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAFC36431D6D1AC9003AAA5D /* GastoHormiga.xcdatamodeld */; };
 		AAFC36471D6D1AC9003AAA5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAFC36461D6D1AC9003AAA5D /* Assets.xcassets */; };
 		AAFC364A1D6D1AC9003AAA5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAFC36481D6D1AC9003AAA5D /* LaunchScreen.storyboard */; };
+		AAFC36571D6D1E65003AAA5D /* Start.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC36561D6D1E65003AAA5D /* Start.m */; };
+		AAFC365A1D6D1EB2003AAA5D /* AddExpensesView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC36591D6D1EB2003AAA5D /* AddExpensesView.m */; };
+		AAFC365D1D6D20A1003AAA5D /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC365C1D6D20A1003AAA5D /* DBManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,13 +24,19 @@
 		AAFC36381D6D1AC9003AAA5D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AAFC363A1D6D1AC9003AAA5D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AAFC363B1D6D1AC9003AAA5D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		AAFC363D1D6D1AC9003AAA5D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		AAFC363E1D6D1AC9003AAA5D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AAFC363D1D6D1AC9003AAA5D /* ExpensesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpensesView.h; sourceTree = "<group>"; };
+		AAFC363E1D6D1AC9003AAA5D /* ExpensesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpensesView.m; sourceTree = "<group>"; };
 		AAFC36411D6D1AC9003AAA5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AAFC36441D6D1AC9003AAA5D /* GastoHormiga.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GastoHormiga.xcdatamodel; sourceTree = "<group>"; };
 		AAFC36461D6D1AC9003AAA5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAFC36491D6D1AC9003AAA5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAFC364B1D6D1AC9003AAA5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAFC36551D6D1E65003AAA5D /* Start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Start.h; sourceTree = "<group>"; };
+		AAFC36561D6D1E65003AAA5D /* Start.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Start.m; sourceTree = "<group>"; };
+		AAFC36581D6D1EB2003AAA5D /* AddExpensesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddExpensesView.h; sourceTree = "<group>"; };
+		AAFC36591D6D1EB2003AAA5D /* AddExpensesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddExpensesView.m; sourceTree = "<group>"; };
+		AAFC365B1D6D20A1003AAA5D /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		AAFC365C1D6D20A1003AAA5D /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +69,10 @@
 		AAFC36361D6D1AC9003AAA5D /* GastoHormiga */ = {
 			isa = PBXGroup;
 			children = (
-				AAFC363A1D6D1AC9003AAA5D /* AppDelegate.h */,
-				AAFC363B1D6D1AC9003AAA5D /* AppDelegate.m */,
-				AAFC363D1D6D1AC9003AAA5D /* ViewController.h */,
-				AAFC363E1D6D1AC9003AAA5D /* ViewController.m */,
+				AAFC36541D6D1CA0003AAA5D /* Cells */,
+				AAFC36531D6D1C96003AAA5D /* Database */,
+				AAFC36521D6D1C8B003AAA5D /* Main */,
+				AAFC36511D6D1C4E003AAA5D /* Controllers */,
 				AAFC36401D6D1AC9003AAA5D /* Main.storyboard */,
 				AAFC36461D6D1AC9003AAA5D /* Assets.xcassets */,
 				AAFC36481D6D1AC9003AAA5D /* LaunchScreen.storyboard */,
@@ -80,6 +89,44 @@
 				AAFC36381D6D1AC9003AAA5D /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AAFC36511D6D1C4E003AAA5D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AAFC363D1D6D1AC9003AAA5D /* ExpensesView.h */,
+				AAFC363E1D6D1AC9003AAA5D /* ExpensesView.m */,
+				AAFC36551D6D1E65003AAA5D /* Start.h */,
+				AAFC36561D6D1E65003AAA5D /* Start.m */,
+				AAFC36581D6D1EB2003AAA5D /* AddExpensesView.h */,
+				AAFC36591D6D1EB2003AAA5D /* AddExpensesView.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		AAFC36521D6D1C8B003AAA5D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				AAFC363A1D6D1AC9003AAA5D /* AppDelegate.h */,
+				AAFC363B1D6D1AC9003AAA5D /* AppDelegate.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		AAFC36531D6D1C96003AAA5D /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				AAFC365B1D6D20A1003AAA5D /* DBManager.h */,
+				AAFC365C1D6D20A1003AAA5D /* DBManager.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		AAFC36541D6D1CA0003AAA5D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,8 +199,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAFC363F1D6D1AC9003AAA5D /* ViewController.m in Sources */,
+				AAFC365D1D6D20A1003AAA5D /* DBManager.m in Sources */,
+				AAFC363F1D6D1AC9003AAA5D /* ExpensesView.m in Sources */,
+				AAFC365A1D6D1EB2003AAA5D /* AddExpensesView.m in Sources */,
 				AAFC363C1D6D1AC9003AAA5D /* AppDelegate.m in Sources */,
+				AAFC36571D6D1E65003AAA5D /* Start.m in Sources */,
 				AAFC36451D6D1AC9003AAA5D /* GastoHormiga.xcdatamodeld in Sources */,
 				AAFC36391D6D1AC9003AAA5D /* main.m in Sources */,
 			);
