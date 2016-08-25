@@ -73,11 +73,17 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-/*! \brief iOS Specific Function: Make this View a delegate of AddExpensesView
+/*! \brief iOS Specific Function:
  */
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    AddExpensesView *addExpenseView = [segue destinationViewController];
-    addExpenseView.delegate = self;
+    if ([segue.identifier isEqualToString:@"idSegueAddExpense"]){
+        /*  Make this View a delegate of AddExpensesView */
+        AddExpensesView *addExpenseView = [segue destinationViewController];
+        addExpenseView.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"idSegueViewExpense"]) {
+        
+    }
+    
     
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -104,7 +110,6 @@
     NSString *strCurrExpense;
     NSString *strCurrExpenseFmt;
     NSNumber *numCurrExpense;
-    //float fltCurrExpense;
     
     NSNumberFormatter *decimalStyleFormatter = [[NSNumberFormatter alloc] init];
     [decimalStyleFormatter setMaximumFractionDigits:2];
@@ -116,31 +121,14 @@
     
     self.totalExpense = 0;
     
-    /* Get the results. */
+    /* Get the results from the database. */
     arrExpenses = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
-    
-    /* Get the results from the database */
-    //arrPayMethodsFromDb = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
-    //self.arrPickerPayMethod = [[NSMutableArray alloc] initWithCapacity:arrPayMethodsFromDb.count];
-    
-    //NSString *value = @"553637.90";
-    //NSNumber *num = @([value floatValue]); // 1. This is the problem. num is set to 553637.875000
-    
-    
-    //NSString *resultString = [decimalStyleFormatter stringFromNumber:num]; // 2. string is assigned with rounded value like 553637.88
-    //float originalValue = [resultString floatValue]; // 3. Hence, originalValue turns out to be 553637.88 which wrong.
     
     for (i = 0; i < arrExpenses.count; i++) {
         strCurrExpense = [[arrExpenses objectAtIndex:i] objectAtIndex:0];
         numCurrExpense = @([strCurrExpense floatValue]);
         strCurrExpenseFmt = [decimalStyleFormatter stringFromNumber:numCurrExpense];
         self.totalExpense += [strCurrExpenseFmt floatValue];
-        
-        
-        
-        //self.totalExpense = self.totalExpense + [NSDecimalNumber decimalNumberWithString:currExpense];
-        
-        //[self.arrPickerPayMethod addObject:[[arrPayMethodsFromDb objectAtIndex:i] objectAtIndex:0]];
     }
     
      [self.btnViewExpense setTitle:[NSString stringWithFormat:@"$%.2f", self.totalExpense] forState:UIControlStateNormal];
