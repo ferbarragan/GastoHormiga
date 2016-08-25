@@ -47,9 +47,9 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-#pragma mark - ViewController Methods.
+#pragma mark - Action Methods.
 /* ------------------------------------------------------------------------------------------------------------------ */
-/* - ViewController Methods ----------------------------------------------------------------------------------------- */
+/* - Action Methods ------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 /*! \brief Action when button btnSave is pressed. This will execute a SQL command to store the values in the database.
@@ -70,6 +70,9 @@
     /* If the query was successfully executed then pop the view controller. */
     if (self.dbManager.affectedRows != 0) {
         NSLog(@"Query was executed successfully. Affected rows = %d", self.dbManager.affectedRows);
+        
+        /* Call the delegate method. */
+        [self.delegate addNewExpenseWasFinished];
         
         /* Pop the view controller. */
         [self.navigationController popViewControllerAnimated:YES];

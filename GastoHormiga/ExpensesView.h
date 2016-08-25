@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExpensesView : UIViewController
+@interface ExpensesView : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UITableView *tblExpenses;
 
 
 @end

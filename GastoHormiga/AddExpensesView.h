@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AddExpensesViewDelegate
+
+-(void) addNewExpenseWasFinished;
+
+@end
+
 @interface AddExpensesView : UIViewController <UITextFieldDelegate>
 
-/* Outlets */
+/* Delegates */
+@property (nonatomic, strong) id<AddExpensesViewDelegate> delegate;
 
+/* Outlets */
 @property (weak, nonatomic) IBOutlet UITextField *txtAmount;
 @property (weak, nonatomic) IBOutlet UITextField *txtDate;
 @property (weak, nonatomic) IBOutlet UITextField *txtDescr;

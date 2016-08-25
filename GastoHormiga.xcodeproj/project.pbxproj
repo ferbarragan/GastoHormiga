@@ -104,10 +104,10 @@
 		AAFC36511D6D1C4E003AAA5D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AAFC363D1D6D1AC9003AAA5D /* ExpensesView.h */,
-				AAFC363E1D6D1AC9003AAA5D /* ExpensesView.m */,
 				AAFC36551D6D1E65003AAA5D /* Start.h */,
 				AAFC36561D6D1E65003AAA5D /* Start.m */,
+				AAFC363D1D6D1AC9003AAA5D /* ExpensesView.h */,
+				AAFC363E1D6D1AC9003AAA5D /* ExpensesView.m */,
 				AAFC36581D6D1EB2003AAA5D /* AddExpensesView.h */,
 				AAFC36591D6D1EB2003AAA5D /* AddExpensesView.m */,
 			);

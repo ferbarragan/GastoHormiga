@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddExpensesView.h"
 
-@interface Start : UIViewController
+@interface Start : UIViewController <AddExpensesViewDelegate>
 
 /* UI Outlets */
 @property (weak, nonatomic) IBOutlet UIButton *btnViewExpense;
