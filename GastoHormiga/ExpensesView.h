@@ -7,11 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddExpensesView.h"
 
-@interface ExpensesView : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@protocol ExpensesViewDelegate
 
+-(void) editExpenseWasFinished;
+
+@end
+
+@interface ExpensesView : UIViewController <UITableViewDelegate, UITableViewDataSource, AddExpensesViewDelegate>
+
+/* Delegates */
+@property (nonatomic, strong) id<ExpensesViewDelegate> delegate;
+
+/* UI Outlets */
 @property (weak, nonatomic) IBOutlet UITableView *tblExpenses;
-
 
 @end
 

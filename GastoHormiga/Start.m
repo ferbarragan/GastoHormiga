@@ -33,7 +33,7 @@
     [self setBackground];
     /* Initialize the database manager. */
     [self dataBaseInit];
-    
+    /* Calculate the total expenses value and show it in the assigned button. */
     [self calculateTotal];
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -50,9 +50,7 @@
 /*! \brief iOS Specific Function:
  */
 - (void)viewDidDisappear:(BOOL)animated {
-    /* Un-hide the NavigationController Toolbar when leaving this View. */
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [super viewDidDisappear:animated];
+
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
@@ -80,11 +78,17 @@
         /*  Make this View a delegate of AddExpensesView */
         AddExpensesView *addExpenseView = [segue destinationViewController];
         addExpenseView.delegate = self;
+        /* Set the AddExpensesView public property recordIdToEdit  */
+        addExpenseView.recordIdToEdit = ADD_NEW_EXPENSE;
     } else if ([segue.identifier isEqualToString:@"idSegueViewExpense"]) {
-        
+        /* Make this View a delegate of ExpensesView */
+        ExpensesView *expensesView = [segue destinationViewController];
+        expensesView.delegate = self;
     }
     
-    
+    /* Un-hide the NavigationController Toolbar when leaving this View. */
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [super viewDidDisappear:YES];
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
@@ -131,7 +135,7 @@
         self.totalExpense += [strCurrExpenseFmt floatValue];
     }
     
-     [self.btnViewExpense setTitle:[NSString stringWithFormat:@"$%.2f", self.totalExpense] forState:UIControlStateNormal];
+     [self.btnViewExpense setTitle:[NSString stringWithFormat:@"$%.1f", self.totalExpense] forState:UIControlStateNormal];
     
 }
 
@@ -159,8 +163,18 @@
 /* - Other Views Delegate Methods ----------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------------ */
 
+/*! \brief 
+ */
 - (void)addNewExpenseWasFinished{
     /* Recalculate the total. */
     [self calculateTotal];
 }
+
+/*! \brief
+ */
+-(void)editExpenseWasFinished {
+    /* Recalculate the total. */
+    [self calculateTotal];
+}
+
 @end

@@ -12,8 +12,8 @@
 @interface ExpensesView ()
 
 @property (nonatomic, strong) DBManager *dbManager;
-
 @property (nonatomic, strong) NSArray *arrExpensesInfo;
+@property (nonatomic) int recordIdToEdit;
 
 @end
 
@@ -49,6 +49,19 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
+/*! \brief iOS Specific Function:
+ */
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"idSegueEditExpense"]){
+        /*  Make this View a delegate of AddExpensesView */
+        AddExpensesView *addExpenseView = [segue destinationViewController];
+        addExpenseView.delegate = self;
+        /* Set the AddExpensesView public property recordIdToEdit  */
+        addExpenseView.recordIdToEdit = self.recordIdToEdit;
+    }
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 #pragma mark - TableView Methods.
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* - TableView Methods ---------------------------------------------------------------------------------------------- */
@@ -56,7 +69,7 @@
 
 /*! \brief Make self the delegate of the textfields.
  */
-- (void) tableViewSetDelegates {
+- (void)tableViewSetDelegates {
     self.tblExpenses.delegate = self;
     self.tblExpenses.dataSource = self;
 }
@@ -64,7 +77,7 @@
 
 /* \brief Fill the TableView with data from the database.
  */
-- (void) tableViewLoadData {
+- (void)tableViewLoadData {
     /* Form the query. */
     NSString *query = @"select * from expense";
     
@@ -133,6 +146,15 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
+/*! \brief iOS Specific Function:
+ */
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(nonnull NSIndexPath *)indexPath {
+    /* Store in the local variable, the row that was selected to edit. */
+    self.recordIdToEdit = [[[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+    /* Trigger the segue. */
+    [self performSegueWithIdentifier:@"idSegueEditExpense" sender:self];
+}
+
 #pragma mark - Database Methods.
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* - Database Methods ----------------------------------------------------------------------------------------------- */
@@ -146,4 +168,15 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
+#pragma mark - Other Views Delegate Methods.
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* - Other Views Delegate Methods ----------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*! \brief In this view controller, this delagates means that an existent record was edited.
+ */
+- (void)addNewExpenseWasFinished{
+    [self tableViewLoadData];
+    [self.delegate editExpenseWasFinished];
+}
 @end

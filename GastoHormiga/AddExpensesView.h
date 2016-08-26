@@ -14,12 +14,12 @@
 
 @end
 
-@interface AddExpensesView : UIViewController <UITextFieldDelegate>
+@interface AddExpensesView : UIViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 /* Delegates */
 @property (nonatomic, strong) id<AddExpensesViewDelegate> delegate;
 
-/* Outlets */
+/* UI Outlets */
 @property (weak, nonatomic) IBOutlet UITextField *txtAmount;
 @property (weak, nonatomic) IBOutlet UITextField *txtDate;
 @property (weak, nonatomic) IBOutlet UITextField *txtDescr;
@@ -35,4 +35,11 @@
 
 /* Actions */
 - (IBAction)btnSavePressed:(id)sender;
+
+/* Public properties */
+@property (nonatomic) int recordIdToEdit;
+
+/* Defines/Macros */
+#define ADD_NEW_EXPENSE (-1)
+
 @end
