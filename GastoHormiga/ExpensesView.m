@@ -154,6 +154,31 @@
     /* Trigger the segue. */
     [self performSegueWithIdentifier:@"idSegueEditExpense" sender:self];
 }
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*! \brief iOS Specific Function:
+ */
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        /* Delete the selected record. */
+        /* Find the record ID. */
+        int recordIDToDelete = [[[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+        
+        /* Prepare the query. */
+        NSString *query = [NSString stringWithFormat:@"delete from expense where id=%d", recordIDToDelete];
+        
+        /* Execute the query. */
+        [self.dbManager executeQuery:query];
+        
+        /* Reload the table view. */
+        [self tableViewLoadData];
+        
+        /* Update notify the delagates to take the required actions. */
+        [self.delegate editExpenseWasFinished];
+    }
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 #pragma mark - Database Methods.
 /* ------------------------------------------------------------------------------------------------------------------ */
