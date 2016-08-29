@@ -20,6 +20,7 @@
 		AAFC36611D6D25F7003AAA5D /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC36601D6D25F7003AAA5D /* BackgroundLayer.m */; };
 		AAFC36631D6D2B9D003AAA5D /* gastoHormiga.sql in Resources */ = {isa = PBXBuildFile; fileRef = AAFC36621D6D2B9D003AAA5D /* gastoHormiga.sql */; };
 		AAFC36651D6D2CDF003AAA5D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AAFC36641D6D2CDF003AAA5D /* libsqlite3.tbd */; };
+		AAFF65F81D73AF1900CE1F38 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAFF65F71D73AF1800CE1F38 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		AAFC36601D6D25F7003AAA5D /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
 		AAFC36621D6D2B9D003AAA5D /* gastoHormiga.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = gastoHormiga.sql; sourceTree = SOURCE_ROOT; };
 		AAFC36641D6D2CDF003AAA5D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		AAFF65F71D73AF1800CE1F38 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAFF65F81D73AF1900CE1F38 /* CoreLocation.framework in Frameworks */,
 				AAFC36651D6D2CDF003AAA5D /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,6 +64,7 @@
 		AAFC362B1D6D1AC8003AAA5D = {
 			isa = PBXGroup;
 			children = (
+				AAFF65F71D73AF1800CE1F38 /* CoreLocation.framework */,
 				AAFC36641D6D2CDF003AAA5D /* libsqlite3.tbd */,
 				AAFC36361D6D1AC9003AAA5D /* GastoHormiga */,
 				AAFC36351D6D1AC8003AAA5D /* Products */,
@@ -376,6 +380,7 @@
 				AAFC36501D6D1AC9003AAA5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

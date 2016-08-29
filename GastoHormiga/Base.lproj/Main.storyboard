@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -170,8 +171,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="PVy-5G-WrI"/>
+                    <navigationItem key="navigationItem" id="PVy-5G-WrI">
+                        <rightBarButtonItems>
+                            <barButtonItem image="camera" style="plain" id="iJL-uN-ZD6">
+                                <connections>
+                                    <action selector="btnAddPicturePressed:" destination="H8l-zr-IRg" id="cOe-F5-PcO"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="location" id="HWN-qA-Nwg">
+                                <connections>
+                                    <action selector="btnAddLocationPressed:" destination="H8l-zr-IRg" id="6c6-tm-D5j"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
+                        <outlet property="btnLocation" destination="HWN-qA-Nwg" id="uyN-Yp-CZT"/>
                         <outlet property="btnSave" destination="Di1-Jd-hE1" id="SnI-QC-emZ"/>
                         <outlet property="lblAmountLine" destination="sH7-mD-J0f" id="tSY-3z-q27"/>
                         <outlet property="lblAmountSymbol" destination="f47-nJ-wTU" id="yew-r6-oY9"/>
@@ -188,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gg-TL-7oH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-34" y="1247"/>
+            <point key="canvasLocation" x="-34" y="1362"/>
         </scene>
         <!--Expenses View-->
         <scene sceneID="tne-QT-ifu">
@@ -243,6 +258,10 @@
             <point key="canvasLocation" x="408" y="537"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="30" height="30"/>
+        <image name="location" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ebp-Pl-qcX"/>
     </inferredMetricsTieBreakers>

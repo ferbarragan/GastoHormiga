@@ -10,9 +10,11 @@
 #import "DBManager.h"
 #import "BackgroundLayer.h"
 
-#define SCROLLVIEWOFFSET 80
+
 
 @interface AddExpensesView ()
+
+#define SCROLLVIEWOFFSET 70
 
 @property (nonatomic, strong) DBManager *dbManager;
 
@@ -27,6 +29,12 @@
 
 @property (nonatomic, strong) NSArray *arrPickerPayMethod;
 @property (nonatomic, strong) NSArray *arrPickerCategory;
+
+/* Core Location Variables */
+@property (nonatomic,strong) CLLocationManager *locationManager;
+@property (nonatomic) float currLat;
+@property (nonatomic) float currLon;
+@property (nonatomic) BOOL locationActivated;
 
 @end
 
@@ -68,7 +76,6 @@
     } else {
         /* It seems that we are going to add a new expense. */
     }
-    
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 /*! \brief iOS Specific Function:
@@ -102,20 +109,24 @@
     if (ADD_NEW_EXPENSE == self.recordIdToEdit) {
         /* Table scheme: id, amount, date, description, payMethod, category, latitude, longitude, imageUrl */
         query = [NSString stringWithFormat:
-                 @"insert into expense values(null, '%@', '%@', '%@', '%@', '%@', 'noLat', 'noLon', 'noUrl')",
-                 self.txtAmount.text,
-                 self.txtDate.text,
-                 self.txtDescr.text,
-                 self.txtPayMet.text,
-                 self.txtCateg.text];
-    } else {
-        query = [NSString stringWithFormat:
-                 @"update expense set amount='%@', date='%@', description='%@', payMethod='%@', category='%@', latitude='noLat', longitude='noLon', imageUrl='noUrl' where id=%d",
+                 @"insert into expense values(null, '%@', '%@', '%@', '%@', '%@', '%.6f', '%.6f', 'noUrl')",
                  self.txtAmount.text,
                  self.txtDate.text,
                  self.txtDescr.text,
                  self.txtPayMet.text,
                  self.txtCateg.text,
+                 self.currLat,
+                 self.currLon];
+    } else {
+        query = [NSString stringWithFormat:
+                 @"update expense set amount='%@', date='%@', description='%@', payMethod='%@', category='%@', latitude='%.6f', longitude='%.6f', imageUrl='noUrl' where id=%d",
+                 self.txtAmount.text,
+                 self.txtDate.text,
+                 self.txtDescr.text,
+                 self.txtPayMet.text,
+                 self.txtCateg.text,
+                 self.currLat,
+                 self.currLon,
                  self.recordIdToEdit];
     }
 
@@ -135,6 +146,36 @@
     }
     else{
         NSLog(@"Could not execute the query.");
+    }
+}
+
+/*! \brief Action when button btnAddPicture is pressed.
+ */
+- (IBAction)btnAddPicturePressed:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (IBAction)btnAddLocationPressed:(id)sender {
+
+    if (NO == self.locationActivated) {
+        /* Configure Location Services */
+        [self initializeLocationService];
+        self.locationActivated = YES;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager startUpdatingLocation];
+    } else {
+        self.locationActivated = NO;
+        /* Erase the location variables */
+        self.currLon = 0;
+        self.currLat = 0;
+        /* Return the button icon to the original image. */
+        [self.btnLocation setImage:[UIImage imageNamed:@"location"]];
     }
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -449,8 +490,89 @@
                            objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"payMethod"]];
     self.txtCateg.text  = [[results objectAtIndex:0]
                            objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"category"]];
+    self.currLon = [[[results objectAtIndex:0]
+                    objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"longitude"]] floatValue];
+    self.currLat = [[[results objectAtIndex:0]
+                    objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"latitude"]] floatValue];
+    
+    /* If last coordinates where not equal than zero, we should put the locationSelected icon. */
+    if ((0 != self.currLon) && (0 != self.currLat)) {
+        [self.btnLocation setImage:[UIImage imageNamed:@"locationSelected"]];
+    } else {
+        /* Keep the default icon. */
+    }
+    
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
+
+#pragma mark - ImagePicker Methods.
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* - ImagePicker Methods -------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*! \brief iOS specific.
+ */
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*! \brief iOS specific.
+ */
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    //self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+#pragma mark - GeoLocation Methods.
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* - GeoLocation Methods -------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+-(void)initializeLocationService
+{
+    /* Initiate location services */
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationActivated = NO;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*! \brief iOS specific.
+ */
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error"
+                                                        message:@"There was an error retrieving your location"
+                                                       delegate:nil cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+    [errorAlert show];
+    NSLog(@"Error: %@",error.description);
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*! \brief iOS specific.
+ */
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    //NSLog(@"didUpdateToLocation: %@", newLocation);
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil) {
+        self.currLat = currentLocation.coordinate.latitude;
+        self.currLon = currentLocation.coordinate.longitude;
+        [self.locationManager stopUpdatingHeading];
+        self.locationManager = nil; /* Destroy the location Manager. */
+        /* Set the button icon to the pressed image. */
+        [self.btnLocation setImage:[UIImage imageNamed:@"locationSelected"]];
+    }
+}
 
 @end

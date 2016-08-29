@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @protocol AddExpensesViewDelegate
 
@@ -14,7 +15,7 @@
 
 @end
 
-@interface AddExpensesView : UIViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface AddExpensesView : UIViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate>
 
 /* Delegates */
 @property (nonatomic, strong) id<AddExpensesViewDelegate> delegate;
@@ -32,9 +33,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDescrLine;
 @property (weak, nonatomic) IBOutlet UILabel *lblPayMetLine;
 @property (weak, nonatomic) IBOutlet UILabel *lblCategLine;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnLocation;
 
 /* Actions */
 - (IBAction)btnSavePressed:(id)sender;
+- (IBAction)btnAddPicturePressed:(id)sender;
+- (IBAction)btnAddLocationPressed:(id)sender;
+
 
 /* Public properties */
 @property (nonatomic) int recordIdToEdit;
