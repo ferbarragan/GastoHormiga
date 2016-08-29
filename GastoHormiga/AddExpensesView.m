@@ -5,6 +5,8 @@
 //  Created by Christian Barragan on 23/08/16.
 //  Copyright © 2016 Christian Barragan. All rights reserved.
 //
+//  Disclaimer: The icons for this application where taken
+//              from https://icons8.com/
 
 #import "AddExpensesView.h"
 #import "DBManager.h"

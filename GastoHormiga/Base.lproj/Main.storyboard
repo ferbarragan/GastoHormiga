@@ -45,7 +45,7 @@
         <!--Mapa-->
         <scene sceneID="c9l-eC-gkg">
             <objects>
-                <viewController id="cac-vd-uef" sceneMemberID="viewController">
+                <viewController id="cac-vd-uef" customClass="MapExpenseView" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cky-0I-c1A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

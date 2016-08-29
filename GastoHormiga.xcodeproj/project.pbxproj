@@ -21,9 +21,12 @@
 		AAFC36631D6D2B9D003AAA5D /* gastoHormiga.sql in Resources */ = {isa = PBXBuildFile; fileRef = AAFC36621D6D2B9D003AAA5D /* gastoHormiga.sql */; };
 		AAFC36651D6D2CDF003AAA5D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AAFC36641D6D2CDF003AAA5D /* libsqlite3.tbd */; };
 		AAFF65F81D73AF1900CE1F38 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAFF65F71D73AF1800CE1F38 /* CoreLocation.framework */; };
+		AAFF65FB1D73CAB600CE1F38 /* MapExpenseView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFF65FA1D73CAB600CE1F38 /* MapExpenseView.m */; };
+		E2F9D97F2FA5C4B6CA40EAE9 /* Pods_GastoHormiga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EDAC595A3A3E70AE7FF042 /* Pods_GastoHormiga.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		62C28F6F373778F65600AE73 /* Pods-GastoHormiga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GastoHormiga.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GastoHormiga/Pods-GastoHormiga.debug.xcconfig"; sourceTree = "<group>"; };
 		AAFC36341D6D1AC8003AAA5D /* GastoHormiga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GastoHormiga.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFC36381D6D1AC9003AAA5D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AAFC363A1D6D1AC9003AAA5D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -46,6 +49,10 @@
 		AAFC36621D6D2B9D003AAA5D /* gastoHormiga.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = gastoHormiga.sql; sourceTree = SOURCE_ROOT; };
 		AAFC36641D6D2CDF003AAA5D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		AAFF65F71D73AF1800CE1F38 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		AAFF65F91D73CAB600CE1F38 /* MapExpenseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapExpenseView.h; sourceTree = "<group>"; };
+		AAFF65FA1D73CAB600CE1F38 /* MapExpenseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapExpenseView.m; sourceTree = "<group>"; };
+		E42C2E2570A89DC0BEC7E752 /* Pods-GastoHormiga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GastoHormiga.release.xcconfig"; path = "Pods/Target Support Files/Pods-GastoHormiga/Pods-GastoHormiga.release.xcconfig"; sourceTree = "<group>"; };
+		E4EDAC595A3A3E70AE7FF042 /* Pods_GastoHormiga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GastoHormiga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,12 +62,30 @@
 			files = (
 				AAFF65F81D73AF1900CE1F38 /* CoreLocation.framework in Frameworks */,
 				AAFC36651D6D2CDF003AAA5D /* libsqlite3.tbd in Frameworks */,
+				E2F9D97F2FA5C4B6CA40EAE9 /* Pods_GastoHormiga.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D628759DADF861B35D0E027 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				62C28F6F373778F65600AE73 /* Pods-GastoHormiga.debug.xcconfig */,
+				E42C2E2570A89DC0BEC7E752 /* Pods-GastoHormiga.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6E657933EB4E30EA3DBC53A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4EDAC595A3A3E70AE7FF042 /* Pods_GastoHormiga.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AAFC362B1D6D1AC8003AAA5D = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +93,8 @@
 				AAFC36641D6D2CDF003AAA5D /* libsqlite3.tbd */,
 				AAFC36361D6D1AC9003AAA5D /* GastoHormiga */,
 				AAFC36351D6D1AC8003AAA5D /* Products */,
+				5D628759DADF861B35D0E027 /* Pods */,
+				6E657933EB4E30EA3DBC53A3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,6 +141,8 @@
 				AAFC363E1D6D1AC9003AAA5D /* ExpensesView.m */,
 				AAFC36581D6D1EB2003AAA5D /* AddExpensesView.h */,
 				AAFC36591D6D1EB2003AAA5D /* AddExpensesView.m */,
+				AAFF65F91D73CAB600CE1F38 /* MapExpenseView.h */,
+				AAFF65FA1D73CAB600CE1F38 /* MapExpenseView.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -160,9 +189,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAFC364E1D6D1AC9003AAA5D /* Build configuration list for PBXNativeTarget "GastoHormiga" */;
 			buildPhases = (
+				38AC7D6CD0364EF87F7CF9CD /* [CP] Check Pods Manifest.lock */,
 				AAFC36301D6D1AC8003AAA5D /* Sources */,
 				AAFC36311D6D1AC8003AAA5D /* Frameworks */,
 				AAFC36321D6D1AC8003AAA5D /* Resources */,
+				0591999F422C1135925B186F /* [CP] Embed Pods Frameworks */,
+				9FD90C7E46A9F87D4DD0952B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -219,6 +251,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0591999F422C1135925B186F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GastoHormiga/Pods-GastoHormiga-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		38AC7D6CD0364EF87F7CF9CD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9FD90C7E46A9F87D4DD0952B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GastoHormiga/Pods-GastoHormiga-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AAFC36301D6D1AC8003AAA5D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -229,6 +309,7 @@
 				AAFC363F1D6D1AC9003AAA5D /* ExpensesView.m in Sources */,
 				AAFC365A1D6D1EB2003AAA5D /* AddExpensesView.m in Sources */,
 				AAFC363C1D6D1AC9003AAA5D /* AppDelegate.m in Sources */,
+				AAFF65FB1D73CAB600CE1F38 /* MapExpenseView.m in Sources */,
 				AAFC36571D6D1E65003AAA5D /* Start.m in Sources */,
 				AAFC36451D6D1AC9003AAA5D /* GastoHormiga.xcdatamodeld in Sources */,
 				AAFC36391D6D1AC9003AAA5D /* main.m in Sources */,
@@ -341,6 +422,7 @@
 		};
 		AAFC364F1D6D1AC9003AAA5D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62C28F6F373778F65600AE73 /* Pods-GastoHormiga.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GastoHormiga/Info.plist;
@@ -352,6 +434,7 @@
 		};
 		AAFC36501D6D1AC9003AAA5D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E42C2E2570A89DC0BEC7E752 /* Pods-GastoHormiga.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GastoHormiga/Info.plist;
