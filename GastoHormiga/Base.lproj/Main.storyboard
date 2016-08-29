@@ -23,6 +23,40 @@
             </objects>
             <point key="canvasLocation" x="-489" y="537"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="3oe-iq-XeQ">
+            <objects>
+                <tabBarController id="0yq-f3-OO3" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="RxX-91-hym"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="8fN-um-Bsu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="PBI-gp-CFs"/>
+                        <segue destination="cac-vd-uef" kind="relationship" relationship="viewControllers" id="vFJ-2g-oS0"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GAe-J1-YFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="412" y="537"/>
+        </scene>
+        <!--Mapa-->
+        <scene sceneID="c9l-eC-gkg">
+            <objects>
+                <viewController id="cac-vd-uef" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cky-0I-c1A">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Mapa" image="map" id="UXc-YB-xe0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HXe-hy-NQT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="896" y="188"/>
+        </scene>
         <!--Start-->
         <scene sceneID="lH2-ZE-Wkl">
             <objects>
@@ -42,11 +76,10 @@
                                     <action selector="btnViewExpensePressed:" destination="xx4-Nz-n8j" eventType="touchUpInside" id="3Pl-qI-QMw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hR2-Vo-6Ml" userLabel="btnAddExpense">
-                                <rect key="frame" x="35" y="143" width="250" height="250"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="200"/>
-                                <state key="normal" title="+">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hR2-Vo-6Ml" userLabel="btnAddExpense">
+                                <rect key="frame" x="35" y="134" width="250" height="250"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <state key="normal" image="add">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -60,9 +93,10 @@
                         <barButtonItem key="backBarButtonItem" title="Atrás" id="x56-eS-IS2"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnAddExpense" destination="hR2-Vo-6Ml" id="6rS-NB-bep"/>
                         <outlet property="btnViewExpense" destination="4Ic-fU-S60" id="BP5-hy-UaO"/>
                         <segue destination="H8l-zr-IRg" kind="push" identifier="idSegueAddExpense" id="ZQS-Pc-znS"/>
-                        <segue destination="BYZ-38-t0r" kind="push" identifier="idSegueViewExpense" id="LYT-Da-Idn"/>
+                        <segue destination="0yq-f3-OO3" kind="push" identifier="idSegueViewExpense" id="8OY-p6-vsk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ren-ZG-32z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,9 +237,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gg-TL-7oH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-34" y="1362"/>
+            <point key="canvasLocation" x="-34" y="1320"/>
         </scene>
-        <!--Expenses View-->
+        <!--Lista-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ExpensesView" sceneMemberID="viewController">
@@ -247,6 +281,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Lista" image="list" id="Mn3-Nl-GXy"/>
                     <navigationItem key="navigationItem" id="Brx-5d-06N"/>
                     <connections>
                         <outlet property="tblExpenses" destination="RcU-6l-P2N" id="YOh-sj-XmI"/>
@@ -255,12 +290,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="408" y="537"/>
+            <point key="canvasLocation" x="896" y="859"/>
         </scene>
     </scenes>
     <resources>
+        <image name="add" width="250" height="250"/>
         <image name="camera" width="30" height="30"/>
+        <image name="list" width="30" height="30"/>
         <image name="location" width="30" height="30"/>
+        <image name="map" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ebp-Pl-qcX"/>

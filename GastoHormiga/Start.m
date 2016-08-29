@@ -147,6 +147,17 @@
 /*! \brief Action when the button btnAddExpense is pressed. This will change the view controller.
  */
 - (IBAction)btnAddExpensePressed:(id)sender {
+#if 0
+    UIButton *addBtn = (UIButton *)sender;
+
+    if ([[addBtn imageForState:UIControlStateNormal] isEqual:[UIImage imageNamed:@"add"]]) {
+        [addBtn setImage:[UIImage imageNamed:@"addPressed"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [addBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+    }
+#endif
     [self performSegueWithIdentifier:@"idSegueAddExpense" sender:self];
 }
 /* ------------------------------------------------------------------------------------------------------------------ */

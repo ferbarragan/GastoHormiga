@@ -14,6 +14,7 @@
 
 /* UI Outlets */
 @property (weak, nonatomic) IBOutlet UIButton *btnViewExpense;
+@property (weak, nonatomic) IBOutlet UIButton *btnAddExpense;
 
 /* Action buttons. */
 - (IBAction)btnAddExpensePressed:(id)sender;
