@@ -21,7 +21,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="obY-1j-oRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-489" y="537"/>
+            <point key="canvasLocation" x="-499" y="769"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3oe-iq-XeQ">
@@ -35,12 +35,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="PBI-gp-CFs"/>
+                        <segue destination="OGv-bT-JGh" kind="relationship" relationship="viewControllers" id="dtg-5j-JWB"/>
                         <segue destination="cac-vd-uef" kind="relationship" relationship="viewControllers" id="vFJ-2g-oS0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GAe-J1-YFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="412" y="537"/>
+            <point key="canvasLocation" x="410" y="374"/>
         </scene>
         <!--Mapa-->
         <scene sceneID="c9l-eC-gkg">
@@ -55,7 +56,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HXe-hy-NQT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896" y="188"/>
+            <point key="canvasLocation" x="1272" y="374"/>
+        </scene>
+        <!--Estadística-->
+        <scene sceneID="i8q-W7-XEe">
+            <objects>
+                <viewController id="OGv-bT-JGh" customClass="ChartExpenseView" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rMr-8z-OB0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Estadística" image="chart" id="sSQ-7R-xYE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="506-Kr-jgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="864" y="-82"/>
         </scene>
         <!--Start-->
         <scene sceneID="lH2-ZE-Wkl">
@@ -101,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ren-ZG-32z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-34" y="537"/>
+            <point key="canvasLocation" x="-42" y="769"/>
         </scene>
         <!--Add Expenses View-->
         <scene sceneID="K5u-aq-85U">
@@ -237,7 +253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gg-TL-7oH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-34" y="1320"/>
+            <point key="canvasLocation" x="410" y="1746"/>
         </scene>
         <!--Lista-->
         <scene sceneID="tne-QT-ifu">
@@ -290,12 +306,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896" y="859"/>
+            <point key="canvasLocation" x="864" y="857"/>
         </scene>
     </scenes>
     <resources>
         <image name="add" width="250" height="250"/>
         <image name="camera" width="30" height="30"/>
+        <image name="chart" width="30" height="30"/>
         <image name="list" width="30" height="30"/>
         <image name="location" width="30" height="30"/>
         <image name="map" width="30" height="30"/>

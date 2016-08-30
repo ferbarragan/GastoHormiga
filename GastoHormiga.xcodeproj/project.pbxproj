@@ -22,7 +22,8 @@
 		AAFC36651D6D2CDF003AAA5D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AAFC36641D6D2CDF003AAA5D /* libsqlite3.tbd */; };
 		AAFF65F81D73AF1900CE1F38 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAFF65F71D73AF1800CE1F38 /* CoreLocation.framework */; };
 		AAFF65FB1D73CAB600CE1F38 /* MapExpenseView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFF65FA1D73CAB600CE1F38 /* MapExpenseView.m */; };
-		E2F9D97F2FA5C4B6CA40EAE9 /* Pods_GastoHormiga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EDAC595A3A3E70AE7FF042 /* Pods_GastoHormiga.framework */; };
+		AAFF65FE1D74E51B00CE1F38 /* ChartExpenseView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFF65FD1D74E51B00CE1F38 /* ChartExpenseView.m */; };
+		CA9F7645E98803D38A01254E /* libPods-GastoHormiga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC7D1BFC22FD89CD51EEF5E /* libPods-GastoHormiga.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,8 +52,10 @@
 		AAFF65F71D73AF1800CE1F38 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		AAFF65F91D73CAB600CE1F38 /* MapExpenseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapExpenseView.h; sourceTree = "<group>"; };
 		AAFF65FA1D73CAB600CE1F38 /* MapExpenseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapExpenseView.m; sourceTree = "<group>"; };
+		AAFF65FC1D74E51B00CE1F38 /* ChartExpenseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartExpenseView.h; sourceTree = "<group>"; };
+		AAFF65FD1D74E51B00CE1F38 /* ChartExpenseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartExpenseView.m; sourceTree = "<group>"; };
 		E42C2E2570A89DC0BEC7E752 /* Pods-GastoHormiga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GastoHormiga.release.xcconfig"; path = "Pods/Target Support Files/Pods-GastoHormiga/Pods-GastoHormiga.release.xcconfig"; sourceTree = "<group>"; };
-		E4EDAC595A3A3E70AE7FF042 /* Pods_GastoHormiga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GastoHormiga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAC7D1BFC22FD89CD51EEF5E /* libPods-GastoHormiga.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GastoHormiga.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +65,7 @@
 			files = (
 				AAFF65F81D73AF1900CE1F38 /* CoreLocation.framework in Frameworks */,
 				AAFC36651D6D2CDF003AAA5D /* libsqlite3.tbd in Frameworks */,
-				E2F9D97F2FA5C4B6CA40EAE9 /* Pods_GastoHormiga.framework in Frameworks */,
+				CA9F7645E98803D38A01254E /* libPods-GastoHormiga.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,7 +84,7 @@
 		6E657933EB4E30EA3DBC53A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E4EDAC595A3A3E70AE7FF042 /* Pods_GastoHormiga.framework */,
+				FAC7D1BFC22FD89CD51EEF5E /* libPods-GastoHormiga.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -143,6 +146,8 @@
 				AAFC36591D6D1EB2003AAA5D /* AddExpensesView.m */,
 				AAFF65F91D73CAB600CE1F38 /* MapExpenseView.h */,
 				AAFF65FA1D73CAB600CE1F38 /* MapExpenseView.m */,
+				AAFF65FC1D74E51B00CE1F38 /* ChartExpenseView.h */,
+				AAFF65FD1D74E51B00CE1F38 /* ChartExpenseView.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 				AAFC36611D6D25F7003AAA5D /* BackgroundLayer.m in Sources */,
 				AAFC363F1D6D1AC9003AAA5D /* ExpensesView.m in Sources */,
 				AAFC365A1D6D1EB2003AAA5D /* AddExpensesView.m in Sources */,
+				AAFF65FE1D74E51B00CE1F38 /* ChartExpenseView.m in Sources */,
 				AAFC363C1D6D1AC9003AAA5D /* AppDelegate.m in Sources */,
 				AAFF65FB1D73CAB600CE1F38 /* MapExpenseView.m in Sources */,
 				AAFC36571D6D1E65003AAA5D /* Start.m in Sources */,

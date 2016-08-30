@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@import GoogleMaps;
+#import <Google-Maps-iOS-Utils/GMUMarkerClustering.h>
+#import <GoogleMaps/GoogleMaps.h>
 
-@interface MapExpenseView : UIViewController<GMSMapViewDelegate>
+@interface MapExpenseView : UIViewController<GMUClusterManagerDelegate, GMSMapViewDelegate>
 
 @end
