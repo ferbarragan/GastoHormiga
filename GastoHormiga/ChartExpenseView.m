@@ -20,6 +20,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    /* Initialize the database manager. */
+    [self dataBaseInit];
+    
+    self.lblPayCash.text = [NSString stringWithFormat:@"$%.2f", [self calculateTotalOfCategory:@"payMethod='Efectivo'"]];
+    self.lblPayTC.text   = [NSString stringWithFormat:@"$%.2f", [self calculateTotalOfCategory:@"payMethod='Tarjeta de Crédito'"]];
+    self.lblPayTD.text   = [NSString stringWithFormat:@"$%.2f", [self calculateTotalOfCategory:@"payMethod='Tarjeta de Débito'"]];
+    
+    self.lblCatFood.text  = [NSString stringWithFormat:@"$%.2f", [self calculateTotalOfCategory:@"category='Comida'"]];
+    self.lblCatGas.text   = [NSString stringWithFormat:@"$%.2f", [self calculateTotalOfCategory:@"category='Gasolina'"]];
+    self.lblCatTrans.text = [NSString stringWithFormat:@"$%.2f", [self calculateTotalOfCategory:@"category='Transporte'"]];
+    self.lblCatEntr.text  = [NSString stringWithFormat:@"$%.2f", [self calculateTotalOfCategory:@"category='Entretenimiento'"]];
+    self.lblCatLikes.text = [NSString stringWithFormat:@"$%.2f", [self calculateTotalOfCategory:@"category='Gustos'"]];
+    self.lblCatOther.text = [NSString stringWithFormat:@"$%.2f", [self calculateTotalOfCategory:@"category='Otros'"]];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,7 +60,7 @@
     NSArray *arrExpenses;
     int i;
     /* Form the query. */
-    NSString *query = [[NSString alloc]initWithFormat:@"select amount from expense where category='%@'",category];
+    NSString *query = [[NSString alloc]initWithFormat:@"select amount from expense where %@",category];
     NSString *strCurrExpense;
     NSString *strCurrExpenseFmt;
     NSNumber *numCurrExpense;
