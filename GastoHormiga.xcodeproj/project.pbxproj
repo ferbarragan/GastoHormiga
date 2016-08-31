@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAF18FEF1D7643CA00599EAA /* cellExpenses.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF18FED1D7643CA00599EAA /* cellExpenses.m */; };
+		AAF18FF01D7643CA00599EAA /* cellExpenses.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF18FEE1D7643CA00599EAA /* cellExpenses.xib */; };
 		AAFC36391D6D1AC9003AAA5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC36381D6D1AC9003AAA5D /* main.m */; };
 		AAFC363C1D6D1AC9003AAA5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC363B1D6D1AC9003AAA5D /* AppDelegate.m */; };
 		AAFC363F1D6D1AC9003AAA5D /* ExpensesView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC363E1D6D1AC9003AAA5D /* ExpensesView.m */; };
@@ -28,6 +30,9 @@
 
 /* Begin PBXFileReference section */
 		62C28F6F373778F65600AE73 /* Pods-GastoHormiga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GastoHormiga.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GastoHormiga/Pods-GastoHormiga.debug.xcconfig"; sourceTree = "<group>"; };
+		AAF18FEC1D7643CA00599EAA /* cellExpenses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cellExpenses.h; sourceTree = "<group>"; };
+		AAF18FED1D7643CA00599EAA /* cellExpenses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cellExpenses.m; sourceTree = "<group>"; };
+		AAF18FEE1D7643CA00599EAA /* cellExpenses.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cellExpenses.xib; sourceTree = "<group>"; };
 		AAFC36341D6D1AC8003AAA5D /* GastoHormiga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GastoHormiga.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFC36381D6D1AC9003AAA5D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AAFC363A1D6D1AC9003AAA5D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -174,6 +179,9 @@
 		AAFC36541D6D1CA0003AAA5D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				AAF18FEC1D7643CA00599EAA /* cellExpenses.h */,
+				AAF18FED1D7643CA00599EAA /* cellExpenses.m */,
+				AAF18FEE1D7643CA00599EAA /* cellExpenses.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -249,6 +257,7 @@
 			files = (
 				AAFC364A1D6D1AC9003AAA5D /* LaunchScreen.storyboard in Resources */,
 				AAFC36471D6D1AC9003AAA5D /* Assets.xcassets in Resources */,
+				AAF18FF01D7643CA00599EAA /* cellExpenses.xib in Resources */,
 				AAFC36421D6D1AC9003AAA5D /* Main.storyboard in Resources */,
 				AAFC36631D6D2B9D003AAA5D /* gastoHormiga.sql in Resources */,
 			);
@@ -318,6 +327,7 @@
 				AAFF65FB1D73CAB600CE1F38 /* MapExpenseView.m in Sources */,
 				AAFC36571D6D1E65003AAA5D /* Start.m in Sources */,
 				AAFC36451D6D1AC9003AAA5D /* GastoHormiga.xcdatamodeld in Sources */,
+				AAF18FEF1D7643CA00599EAA /* cellExpenses.m in Sources */,
 				AAFC36391D6D1AC9003AAA5D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  ExpensesView.m
 //  GastoHormiga
 //
 //  Created by Christian Barragan on 23/08/16.
@@ -112,38 +112,34 @@
 /*! \brief iOS Specific Function:
  */
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    return 100;
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 /*! \brief iOS Specific Function:
  */
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-#if 0
+    
+    /* Dequeue the cell. */
     cellExpenses *cell = (cellExpenses *)[tableView dequeueReusableCellWithIdentifier:@"cellExpenses"];
     
     if (cell == nil) {
         [tableView registerNib:[UINib nibWithNibName:@"cellExpenses" bundle:nil] forCellReuseIdentifier:@"cellExpenses"];
         cell = [tableView dequeueReusableCellWithIdentifier:@"cellExpenses"];
     }
-#endif
-    /* Dequeue the cell. */
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idCellRecord" forIndexPath:indexPath];
+    
+    cell.delegate = self;
+    cell.cellIndex = indexPath.row;
     
     NSInteger indexOfAmount = [self.dbManager.arrColumnNames indexOfObject:@"amount"];
     NSInteger indexOfDescription = [self.dbManager.arrColumnNames indexOfObject:@"description"];
     NSInteger indexOfDate = [self.dbManager.arrColumnNames indexOfObject:@"date"];
     
-#if 0
     /* Set the loaded data to the appropriate cell labels. */
-    cell.lblAmount.text = [NSString stringWithFormat:@"%@", [[self.arrExpenseInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfAmount]];
-    
-    cell.lblDescription.text = [NSString stringWithFormat:@"%@", [[self.arrExpenseInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfDescription]];
-    cell.lblDate.text = [NSString stringWithFormat:@"%@", [[self.arrExpenseInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfDate]];
-#endif
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfAmount]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfDescription]];
+    cell.lblAmount.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfAmount]];
+    cell.lblDescription.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfDescription]];
+    cell.lblDate.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfDate]];
+
     return cell;
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -151,10 +147,7 @@
 /*! \brief iOS Specific Function:
  */
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(nonnull NSIndexPath *)indexPath {
-    /* Store in the local variable, the row that was selected to edit. */
-    self.recordIdToEdit = [[[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
-    /* Trigger the segue. */
-    [self performSegueWithIdentifier:@"idSegueEditExpense" sender:self];
+
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
@@ -181,6 +174,20 @@
     }
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
+
+#pragma mark - Custom Cell Delegates.
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* - Custom Cell Delegates ------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------ */
+- (void)didClickOnEditButtonAtIndex:(NSInteger)cellIndex withData:(id)data
+{
+    /* Store in the local variable, the row that was selected to edit. */
+    self.recordIdToEdit = [[[self.arrExpensesInfo objectAtIndex:cellIndex] objectAtIndex:0] intValue];
+    /* Trigger the segue. */
+    [self performSegueWithIdentifier:@"idSegueEditExpense" sender:self];
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 
 #pragma mark - Database Methods.
 /* ------------------------------------------------------------------------------------------------------------------ */

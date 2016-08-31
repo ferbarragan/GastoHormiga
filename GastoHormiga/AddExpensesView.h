@@ -18,7 +18,7 @@
 @interface AddExpensesView : UIViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate>
 
 /* Delegates */
-@property (nonatomic, strong) id<AddExpensesViewDelegate> delegate;
+@property (nonatomic, weak) id<AddExpensesViewDelegate> delegate;
 
 /* UI Outlets */
 @property (weak, nonatomic) IBOutlet UITextField *txtAmount;

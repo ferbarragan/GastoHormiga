@@ -15,6 +15,8 @@
 @interface Start ()
 
 @property (nonatomic, strong) DBManager *dbManager;
+@property (nonatomic, strong) AddExpensesView *addExpensesView;
+@property (nonatomic, strong) ExpensesView *expensesView;
 
 @property float totalExpense;
 
@@ -78,14 +80,15 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"idSegueAddExpense"]){
         /*  Make this View a delegate of AddExpensesView */
-        AddExpensesView *addExpenseView = [segue destinationViewController];
-        addExpenseView.delegate = self;
+        self.addExpensesView = [segue destinationViewController];
+        self.addExpensesView.delegate = self;
         /* Set the AddExpensesView public property recordIdToEdit  */
-        addExpenseView.recordIdToEdit = ADD_NEW_EXPENSE;
+        self.addExpensesView.recordIdToEdit = ADD_NEW_EXPENSE;
     } else if ([segue.identifier isEqualToString:@"idSegueViewExpense"]) {
         /* Make this View a delegate of ExpensesView */
-        ExpensesView *expensesView = [segue destinationViewController];
-        expensesView.delegate = self;
+        self.expensesView = [segue destinationViewController];
+        self.expensesView.delegate = self;
+        //self.expensesView.Data = 55;
     }
     
     /* Un-hide the NavigationController Toolbar when leaving this View. */

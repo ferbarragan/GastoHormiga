@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AddExpensesView.h"
+#import "cellExpenses.h"
 
 @protocol ExpensesViewDelegate
 
@@ -15,13 +16,15 @@
 
 @end
 
-@interface ExpensesView : UIViewController <UITableViewDelegate, UITableViewDataSource, AddExpensesViewDelegate>
+@interface ExpensesView : UIViewController <UITableViewDelegate, UITableViewDataSource, AddExpensesViewDelegate, cellDelegate>
 
 /* Delegates */
-@property (nonatomic, strong) id<ExpensesViewDelegate> delegate;
+@property (nonatomic, weak) id<ExpensesViewDelegate> delegate;
 
 /* UI Outlets */
 @property (weak, nonatomic) IBOutlet UITableView *tblExpenses;
 
+/* Test */
+@property (nonatomic) int Data;
 @end
 
