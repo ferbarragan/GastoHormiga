@@ -24,7 +24,5 @@
 /* UI Outlets */
 @property (weak, nonatomic) IBOutlet UITableView *tblExpenses;
 
-/* Test */
-@property (nonatomic) int Data;
 @end
 

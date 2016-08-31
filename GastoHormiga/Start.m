@@ -17,6 +17,7 @@
 @property (nonatomic, strong) DBManager *dbManager;
 @property (nonatomic, strong) AddExpensesView *addExpensesView;
 @property (nonatomic, strong) ExpensesView *expensesView;
+@property (nonatomic, strong) UITabBarController *tabBarController;
 
 @property float totalExpense;
 
@@ -85,10 +86,12 @@
         /* Set the AddExpensesView public property recordIdToEdit  */
         self.addExpensesView.recordIdToEdit = ADD_NEW_EXPENSE;
     } else if ([segue.identifier isEqualToString:@"idSegueViewExpense"]) {
+        /* Note: The next line is mandatory, otherwise the expensesView will lost the reference to this 
+         delegate. */
+        self.tabBarController = (UITabBarController*) [segue destinationViewController];
+        self.expensesView = [self.tabBarController.viewControllers objectAtIndex:0];
         /* Make this View a delegate of ExpensesView */
-        self.expensesView = [segue destinationViewController];
         self.expensesView.delegate = self;
-        //self.expensesView.Data = 55;
     }
     
     /* Un-hide the NavigationController Toolbar when leaving this View. */
