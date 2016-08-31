@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblAmount;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
+@property (weak, nonatomic) IBOutlet UILabel *lblType;
+@property (weak, nonatomic) IBOutlet UILabel *lblCateg;
 
 - (IBAction)btnEditPressed:(UIButton *)sender;
 

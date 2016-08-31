@@ -134,11 +134,15 @@
     NSInteger indexOfAmount = [self.dbManager.arrColumnNames indexOfObject:@"amount"];
     NSInteger indexOfDescription = [self.dbManager.arrColumnNames indexOfObject:@"description"];
     NSInteger indexOfDate = [self.dbManager.arrColumnNames indexOfObject:@"date"];
+    NSInteger indexOfType = [self.dbManager.arrColumnNames indexOfObject:@"payMethod"];
+    NSInteger indexOfCateg = [self.dbManager.arrColumnNames indexOfObject:@"category"];
     
     /* Set the loaded data to the appropriate cell labels. */
     cell.lblAmount.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfAmount]];
     cell.lblDescription.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfDescription]];
     cell.lblDate.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfDate]];
+    cell.lblType.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfType]];
+    cell.lblCateg.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfCateg]];
 
     return cell;
 }
