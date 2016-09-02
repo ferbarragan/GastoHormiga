@@ -10,6 +10,7 @@
 
 @protocol cellDelegate <NSObject>
 - (void)didClickOnEditButtonAtIndex:(NSInteger)cellIndex withData:(id)data;
+- (void)didClickOnImageButtonAtIndex:(NSInteger)cellIndex withData:(id)data;
 @end
 
 @interface cellExpenses : UITableViewCell
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblCateg;
 
 - (IBAction)btnEditPressed:(UIButton *)sender;
+- (IBAction)btnImagePressed:(UIButton *)sender;
 
 
 @property (weak, nonatomic) id<cellDelegate>delegate;

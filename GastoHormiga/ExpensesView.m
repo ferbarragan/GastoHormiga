@@ -16,6 +16,7 @@
 @property (nonatomic, strong) DBManager *dbManager;
 @property (nonatomic, strong) NSArray *arrExpensesInfo;
 @property (nonatomic) int recordIdToEdit;
+@property (nonatomic, strong) NSString *currRowImagePath;
 
 @end
 
@@ -60,6 +61,9 @@
         addExpenseView.delegate = self;
         /* Set the AddExpensesView public property recordIdToEdit  */
         addExpenseView.recordIdToEdit = self.recordIdToEdit;
+    } else if ([segue.identifier isEqualToString:@"idSegueViewImage"]){
+        ExpenseImageView *expensesImageView = [segue destinationViewController];
+        expensesImageView.imagePath = self.currRowImagePath;
     }
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -114,7 +118,7 @@
 /*! \brief iOS Specific Function:
  */
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    return 110;
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
@@ -138,6 +142,7 @@
     NSInteger indexOfDate = [self.dbManager.arrColumnNames indexOfObject:@"date"];
     NSInteger indexOfType = [self.dbManager.arrColumnNames indexOfObject:@"payMethod"];
     NSInteger indexOfCateg = [self.dbManager.arrColumnNames indexOfObject:@"category"];
+    //NSInteger indexOfImageUrl = [self.dbManager.arrColumnNames indexOfObject:@"imageUrl"];
     
     /* Set the loaded data to the appropriate cell labels. */
     cell.lblAmount.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfAmount]];
@@ -145,17 +150,12 @@
     cell.lblDate.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfDate]];
     cell.lblType.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfType]];
     cell.lblCateg.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfCateg]];
-
+    //cell.lblImagePath.text = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfImageUrl]];
+    
     return cell;
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-/*! \brief iOS Specific Function:
- */
--(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(nonnull NSIndexPath *)indexPath {
-
-}
-/* ------------------------------------------------------------------------------------------------------------------ */
 
 /*! \brief iOS Specific Function:
  */
@@ -185,8 +185,7 @@
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* - Custom Cell Delegates ------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------------ */
-- (void)didClickOnEditButtonAtIndex:(NSInteger)cellIndex withData:(id)data
-{
+- (void)didClickOnEditButtonAtIndex:(NSInteger)cellIndex withData:(id)data {
     /* Store in the local variable, the row that was selected to edit. */
     self.recordIdToEdit = [[[self.arrExpensesInfo objectAtIndex:cellIndex] objectAtIndex:0] intValue];
     /* Trigger the segue. */
@@ -194,6 +193,15 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
+- (void)didClickOnImageButtonAtIndex:(NSInteger)cellIndex withData:(id)data {
+    //NSInteger indexOfImgUrl = [self.dbManager.arrColumnNames indexOfObject:@"imageUrl"];
+    
+    /* Get the image path */
+    //self.currRowImagePath = [NSString stringWithFormat:@"%@", [[self.arrExpensesInfo objectAtIndex:cellIndex] objectAtIndex:indexOfImgUrl]];
+    
+    /* Trigger the segue. */
+    //[self performSegueWithIdentifier:@"idSegueViewImage" sender:self];
+}
 
 #pragma mark - Database Methods.
 /* ------------------------------------------------------------------------------------------------------------------ */

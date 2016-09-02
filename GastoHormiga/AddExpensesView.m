@@ -24,19 +24,28 @@
 @property (nonatomic, strong) UIPickerView *pickerPayMethod; /* Payment Method PickerView */
 @property (nonatomic, strong) UIPickerView *pickerCategory;  /* Category PickerView */
 @property (nonatomic, strong) UIDatePicker *datePicker;      /* Date PickerView */
+@property (nonatomic, strong) NSArray *arrPickerPayMethod;
+@property (nonatomic, strong) NSArray *arrPickerCategory;
+@property (nonatomic) int lastPickerPayMethodRow;
+@property (nonatomic) int lastPickerCategoryRow;
+
 
 /* Arrays to hold the picker's information */
 #define PICKERPAYMETHODVALUES @"Efectivo", @"Tarjeta de Crédito", @"Tarjeta de Débito"
 #define PICKERCATEGORYVALUES  @"Comida", @"Transporte", @"Gasolina", @"Entretenimiento", @"Gustos", @"Otros"
 
-@property (nonatomic, strong) NSArray *arrPickerPayMethod;
-@property (nonatomic, strong) NSArray *arrPickerCategory;
+
+
+
 
 /* Core Location Variables */
 @property (nonatomic,strong) CLLocationManager *locationManager;
 @property (nonatomic) float currLat;
 @property (nonatomic) float currLon;
 @property (nonatomic) BOOL locationActivated;
+
+/* Global variable to store the image path. */
+@property (nonatomic, strong) NSString * imagePath;
 
 @end
 
@@ -107,51 +116,71 @@
 /*! \brief Action when button btnSave is pressed. This will execute a SQL command to store the values in the database.
  */
 - (IBAction)btnSavePressed:(id)sender {
-    /* Prepare the query string. If the recordIDToEdit property has value other than -1, then create an update query, 
-     * otherwie create an insert query */
-    NSString *query;
-    if (ADD_NEW_EXPENSE == self.recordIdToEdit) {
-        /* Table scheme: id, amount, date, description, payMethod, category, latitude, longitude, imageUrl */
-        query = [NSString stringWithFormat:
-                 @"insert into expense values(null, '%@', '%@', '%@', '%@', '%@', '%.6f', '%.6f', 'noUrl')",
-                 self.txtAmount.text,
-                 self.txtDate.text,
-                 self.txtDescr.text,
-                 self.txtPayMet.text,
-                 self.txtCateg.text,
-                 self.currLat,
-                 self.currLon];
+    
+    /* Check that all the TextFields are filled. */
+    if ([self someTextFieldIsEmpty])
+    {
+        /* ToDo: Remove warning: Warning: Attempt to present <UIAlertController: 0x1516a000>  on
+         <AddNewExpense: 0x14596d30> which is already presenting <UIAlertController: 0x151a0000> */
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                 message:@"¡Todos los campos deben estar llenos!"
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        /* We add buttons to the alert controller by creating UIAlertActions: */
+        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil]; //You can use a block here to handle a press on this button
+        [alertController addAction:actionOk];
+        [self presentViewController:alertController animated:YES completion:nil];
     } else {
-        query = [NSString stringWithFormat:
-                 @"update expense set amount='%@', date='%@', description='%@', payMethod='%@', category='%@', latitude='%.6f', longitude='%.6f', imageUrl='noUrl' where id=%d",
-                 self.txtAmount.text,
-                 self.txtDate.text,
-                 self.txtDescr.text,
-                 self.txtPayMet.text,
-                 self.txtCateg.text,
-                 self.currLat,
-                 self.currLon,
-                 self.recordIdToEdit];
-    }
-
-    
-    /* Execute the query. */
-    [self.dbManager executeQuery:query];
-    
-    /* If the query was successfully executed then pop the view controller. */
-    if (self.dbManager.affectedRows != 0) {
-        NSLog(@"Query was executed successfully. Affected rows = %d", self.dbManager.affectedRows);
+        /* Prepare the query string. If the recordIDToEdit property has value other than -1, then create an update query,
+         * otherwie create an insert query */
+        NSString *query;
+        if (ADD_NEW_EXPENSE == self.recordIdToEdit) {
+            /* Table scheme: id, amount, date, description, payMethod, category, latitude, longitude, imageUrl */
+            query = [NSString stringWithFormat:
+                     @"insert into expense values(null, '%@', '%@', '%@', '%@', '%@', '%.6f', '%.6f', '%@')",
+                     self.txtAmount.text,
+                     self.txtDate.text,
+                     self.txtDescr.text,
+                     self.txtPayMet.text,
+                     self.txtCateg.text,
+                     self.currLat,
+                     self.currLon,
+                     self.imagePath];
+        } else {
+            query = [NSString stringWithFormat:
+                     @"update expense set amount='%@', date='%@', description='%@', payMethod='%@', category='%@', latitude='%.6f', longitude='%.6f', imageUrl='%@' where id=%d",
+                     self.txtAmount.text,
+                     self.txtDate.text,
+                     self.txtDescr.text,
+                     self.txtPayMet.text,
+                     self.txtCateg.text,
+                     self.currLat,
+                     self.currLon,
+                     self.imagePath,
+                     self.recordIdToEdit];
+        }
         
-        /* Call the delegate method. */
-        [self.delegate addNewExpenseWasFinished];
+        /* Execute the query. */
+        [self.dbManager executeQuery:query];
         
-        /* Pop the view controller. */
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else{
-        NSLog(@"Could not execute the query.");
+        /* If the query was successfully executed then pop the view controller. */
+        if (self.dbManager.affectedRows != 0) {
+            NSLog(@"Query was executed successfully. Affected rows = %d", self.dbManager.affectedRows);
+            
+            /* Call the delegate method. */
+            [self.delegate addNewExpenseWasFinished];
+            
+            /* Pop the view controller. */
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            NSLog(@"Could not execute the query.");
+        }
     }
 }
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 /*! \brief Action when button btnAddPicture is pressed.
  */
@@ -163,7 +192,10 @@
     
     [self presentViewController:picker animated:YES completion:NULL];
 }
+/* ------------------------------------------------------------------------------------------------------------------ */
 
+/*! \brief Action when button btnAddPicture is pressed.
+ */
 - (IBAction)btnAddLocationPressed:(id)sender {
 
     if (NO == self.locationActivated) {
@@ -197,7 +229,7 @@
     self.txtAmount.keyboardType = UIKeyboardTypeDecimalPad;
     
     
-    /* Amount Text Field tool bar configuration. */
+    /* Amount Text Field tool bar and tool bar button configuration. */
     UIToolbar *txtFieldAmountToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [txtFieldAmountToolBar setTintColor:[UIColor grayColor]];
     UIBarButtonItem *txtFieldAmountToolBarDoneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Listo"
@@ -212,10 +244,14 @@
                                                               nil]];
     [self.txtAmount setInputAccessoryView:txtFieldAmountToolBar];
 }
+/* ------------------------------------------------------------------------------------------------------------------ */
 
+/*! \brief Function called when Tool Bar Button of Numeric Pad was pressed.
+ */
 - (void) textFieldAmountEntered {
     [self.txtAmount resignFirstResponder];
 }
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 /*! \brief Make self the delegate of the textfields.
  */
@@ -230,11 +266,65 @@
 
 /*! \brief iOS Specific Function:
  */
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (self.txtPayMet == textField) {
+        [self.pickerPayMethod selectRow:self.lastPickerPayMethodRow inComponent:0 animated:YES];
+        self.txtPayMet.text = [self.arrPickerPayMethod objectAtIndex:self.lastPickerPayMethodRow];
+    } else if (self.txtCateg == textField) {
+        [self.pickerCategory selectRow:self.lastPickerCategoryRow inComponent:0 animated:YES];
+        self.txtCateg.text = [self.arrPickerCategory objectAtIndex:self.lastPickerCategoryRow];
+    } else {
+        
+    }
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*! \brief iOS Specific Function:
+ */
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
+
+/* This method is called when the user touches outside of the keyboard zone. */
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    
+    BOOL retVal = NO;
+    NSString *txtFieldContent = textField.text;
+    
+    if ([txtFieldContent isEqualToString:@""]) {
+        /* ToDo: Remove warning: Warning: Attempt to present <UIAlertController: 0x1516a000>  on
+         <AddNewExpense: 0x14596d30> which is already presenting <UIAlertController: 0x151a0000> */
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                 message:@"¡Este campo no puede estar vacío!"
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        /* We add buttons to the alert controller by creating UIAlertActions: */
+        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil]; //You can use a block here to handle a press on this button
+        [alertController addAction:actionOk];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        retVal = YES;
+    }
+    return retVal;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+-(BOOL)someTextFieldIsEmpty {
+    if ([self.txtAmount.text isEqualToString:@""]||
+        [self.txtDate.text isEqualToString:@""]  ||
+        [self.txtDescr.text isEqualToString:@""] ||
+        [self.txtPayMet.text isEqualToString:@""]||
+        [self.txtCateg.text isEqualToString:@""])
+    {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 
 #pragma mark - ScrollView Methods.
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -313,7 +403,7 @@
     [datePickerToolBar setItems:[NSArray arrayWithObjects:datePickerToolBarSpace,datePickerToolBarDoneBtn, nil]];
     [self.txtDate setInputAccessoryView:datePickerToolBar];
 }
-
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 #pragma mark - PickerView Methods.
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -376,6 +466,10 @@
     [pickerCategoryToolBar setItems:[NSArray arrayWithObjects:pickerCategoryToolBarSpace, pickerCategoryToolBarDoneBtn, nil]];
     [self.txtCateg setInputAccessoryView:pickerCategoryToolBar];
     
+    /* Set the default picker selected row */
+    self.lastPickerPayMethodRow = 0;
+    self.lastPickerCategoryRow = 0;
+    
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
@@ -402,14 +496,14 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-/*! \brief
+/*! \brief iOS Specific
  */
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-/*! \brief
+/*! \brief iOS Specific
  */
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if (pickerView == self.pickerPayMethod) {
@@ -424,7 +518,7 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-/*! \brief
+/*! \brief iOS Specific
  */
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (pickerView == self.pickerPayMethod) {
@@ -434,23 +528,25 @@
         return [self.arrPickerCategory objectAtIndex:row];
     }
     else {
-        return 0;
+        return @"";
     }
-    return @"";
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-/*! \brief
+/*! \brief iOS Specific
  */
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (pickerView == self.pickerPayMethod) {
         self.txtPayMet.text = [self.arrPickerPayMethod objectAtIndex:row];
+        self.lastPickerPayMethodRow = row;
+        
         //self.sqlExpPay = row;
         //self.u8InputDataVality |= PAYMET_BIT_MASK;
         //self.lastPayMethodArrayIndex = row;
     }
     else if (pickerView == self.pickerCategory) {
         self.txtCateg.text = [self.arrPickerCategory objectAtIndex:row];
+        self.lastPickerCategoryRow = row;
         //self.sqlExpCat = row;
         //self.u8InputDataVality |= CATEG_BIT_MASK;
         //self.lastCategoryArrayIndex = row;
@@ -509,8 +605,8 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-
-#pragma mark - ImagePicker Methods.
+#if 0
+#pragma mark - ImagePicker Methods (Camera).
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* - ImagePicker Methods -------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -531,11 +627,29 @@
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     //self.imageView.image = chosenImage;
     
+    NSData *imageData = UIImagePNGRepresentation(chosenImage);
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    self.imagePath =[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",@"cached"]];
+    
+    NSLog((@"pre writing to file"));
+    
+    if (![imageData writeToFile:self.imagePath atomically:NO])
+    {
+        NSLog((@"Failed to cache image data to disk"));
+    }
+    else
+    {
+        NSLog((@"the cachedImagedPath is %@",self.imagePath));
+    }
+    
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
-
+#endif
 #pragma mark - GeoLocation Methods.
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* - GeoLocation Methods -------------------------------------------------------------------------------------------- */
@@ -553,11 +667,16 @@
 /*! \brief iOS specific.
  */
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error"
-                                                        message:@"There was an error retrieving your location"
-                                                       delegate:nil cancelButtonTitle:@"OK"
-                                              otherButtonTitles: nil];
-    [errorAlert show];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                             message:@"¡Hubo un error al obtener tu ubicación!"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    /* We add buttons to the alert controller by creating UIAlertActions: */
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil]; //You can use a block here to handle a press on this button
+    [alertController addAction:actionOk];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
     NSLog(@"Error: %@",error.description);
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
@@ -578,5 +697,6 @@
         [self.btnLocation setImage:[UIImage imageNamed:@"locationSelected"]];
     }
 }
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 @end

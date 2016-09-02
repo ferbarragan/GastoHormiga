@@ -26,4 +26,10 @@
         [self.delegate didClickOnEditButtonAtIndex:self.cellIndex withData:@"Not used"];
     }
 }
+
+- (IBAction)btnImagePressed:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickOnImageButtonAtIndex:withData:)]) {
+        [self.delegate didClickOnImageButtonAtIndex:self.cellIndex withData:@"Not used"];
+    }
+}
 @end

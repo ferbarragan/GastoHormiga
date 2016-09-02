@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AddExpensesView.h"
 #import "cellExpenses.h"
+#import "ExpenseImageView.h"
 
 @protocol ExpensesViewDelegate
 
