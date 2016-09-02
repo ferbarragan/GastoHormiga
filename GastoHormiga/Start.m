@@ -70,7 +70,7 @@
 /*! \brief This settles a backgound layer with a gradient color.
  */
 - (void)setBackground {
-    CAGradientLayer *bgLayer = [BackgroundLayer blueGradient];
+    CAGradientLayer *bgLayer = [BackgroundLayer redGradient];
     bgLayer.frame = self.view.bounds;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
 }
@@ -113,6 +113,8 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
+/*! \brief Calculates the total expense.
+ */
 -(void)calculateTotal {
     
     NSArray *arrExpenses;

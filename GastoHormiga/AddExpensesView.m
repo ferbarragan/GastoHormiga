@@ -26,8 +26,8 @@
 @property (nonatomic, strong) UIDatePicker *datePicker;      /* Date PickerView */
 @property (nonatomic, strong) NSArray *arrPickerPayMethod;
 @property (nonatomic, strong) NSArray *arrPickerCategory;
-@property (nonatomic) int lastPickerPayMethodRow;
-@property (nonatomic) int lastPickerCategoryRow;
+@property (nonatomic) NSInteger lastPickerPayMethodRow;
+@property (nonatomic) NSInteger lastPickerCategoryRow;
 
 
 /* Arrays to hold the picker's information */
@@ -102,7 +102,7 @@
 /*! \brief This settles a backgound layer with a gradient color.
  */
 - (void)setBackground {
-    CAGradientLayer *bgLayer = [BackgroundLayer blueGradient];
+    CAGradientLayer *bgLayer = [BackgroundLayer redGradient];
     bgLayer.frame = self.view.bounds;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
 }

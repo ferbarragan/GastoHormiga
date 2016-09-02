@@ -10,6 +10,7 @@
 
 #import "ExpensesView.h"
 #import "DBManager.h"
+#import "BackgroundLayer.h"
 
 @interface ExpensesView ()
 
@@ -31,6 +32,9 @@
  */
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    /* Change the background. */
+    [self setBackground];
     
     /* Set TableView delegates */
     [self tableViewSetDelegates];
@@ -68,7 +72,15 @@
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
-
+/*! \brief This settles a backgound layer with a gradient color.
+ */
+- (void)setBackground {
+    CAGradientLayer *bgLayer = [BackgroundLayer redGradient];
+    bgLayer.frame = self.view.bounds;
+    [self.view.layer insertSublayer:bgLayer atIndex:0];
+    self.tblExpenses.backgroundColor = [UIColor clearColor];
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 #pragma mark - TableView Methods.
 /* ------------------------------------------------------------------------------------------------------------------ */

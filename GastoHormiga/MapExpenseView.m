@@ -49,10 +49,6 @@
 
 @end
 
-
-static const double kCameraLatitude = 23.9079007;
-static const double kCameraLongitude = -99.5448522;
-
 @interface MapExpenseView ()
 
 @property GMSMapView *mapView;
@@ -237,12 +233,18 @@ static const double kCameraLongitude = -99.5448522;
 /*! \brief iOS specific.
  */
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error"
-                                                        message:@"There was an error retrieving your location"
-                                                       delegate:nil cancelButtonTitle:@"OK"
-                                              otherButtonTitles: nil];
-    [errorAlert show];
-    NSLog(@"Error: %@",error.description);
+    /* ToDo: Remove warning: Warning: Attempt to present <UIAlertController: 0x1516a000>  on
+     <AddNewExpense: 0x14596d30> which is already presenting <UIAlertController: 0x151a0000> */
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                             message:@"¡Hubo un error al obtener tu ubicación!"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    /* We add buttons to the alert controller by creating UIAlertActions: */
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil]; //You can use a block here to handle a press on this button
+    [alertController addAction:actionOk];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
